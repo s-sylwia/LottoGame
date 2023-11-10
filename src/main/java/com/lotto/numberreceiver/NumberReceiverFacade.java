@@ -1,15 +1,24 @@
 package com.lotto.numberreceiver;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class NumberReceiverFacade {
 
-    public String receiveNumbers(Set<Integer> numbersFromUser) {
-        if ((numbersFromUser.size() != 6) || numbersFromUser.stream().anyMatch(number -> number < 1 || number > 99)) {
-            return "fail";
+  NumberValidator numberValidator = new NumberValidator();
+    public static final String FAILED_VALIDATION_MESSAGE = "fail";
+    public static final String SUCCEED_VALIDATION_MESSAGE = "success";
+
+    public LotteryResponseDto receiveNumbers(Set<Integer> numbersFromUser) {
+        if (numberValidator.validateNumbers(numbersFromUser)) {
+            return new LotteryResponseDto(null, FAILED_VALIDATION_MESSAGE);
         }
-        return "success";
+        String lotteryTicketID = UUID.randomUUID().toString();
+        return new LotteryResponseDto(lotteryTicketID, SUCCEED_VALIDATION_MESSAGE);
     }
+
+
+
 }
 
 
