@@ -1,6 +1,6 @@
 package com.lotto.numberreceiver;
 
-public class DrawDateGenerator {
+class DrawDateGenerator {
 
     DrawDateGenerator drawDateGenerator;
 

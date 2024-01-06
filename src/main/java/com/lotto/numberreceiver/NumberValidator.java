@@ -3,9 +3,9 @@ package com.lotto.numberreceiver;
 import java.util.Set;
 
 class NumberValidator {
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 99;
-    public static final int REQUIRED_SIZE = 6;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 99;
+    private static final int REQUIRED_SIZE = 6;
 
      boolean validateNumbers(Set<Integer> numbersFromUser) {
         return hasProvideSixNumbers(numbersFromUser) || areNumbersInTheRange(numbersFromUser);

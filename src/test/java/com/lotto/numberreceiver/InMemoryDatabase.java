@@ -3,9 +3,8 @@ package com.lotto.numberreceiver;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
-public class InMemoryDatabase implements NumberReceiverRepository {
+class InMemoryDatabase implements NumberReceiverRepository {
 
     Map<String, Ticket> dataBase = new ConcurrentHashMap<>();
 

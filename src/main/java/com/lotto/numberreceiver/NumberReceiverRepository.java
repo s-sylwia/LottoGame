@@ -1,5 +1,5 @@
 package com.lotto.numberreceiver;
 
-public interface NumberReceiverRepository {
+interface NumberReceiverRepository {
     Ticket save(Ticket ticket);
 }
