@@ -2,12 +2,15 @@ package com.lotto.numberreceiver;
 
 import com.lotto.numberreceiver.dto.LotteryResponseDto;
 import com.lotto.numberreceiver.dto.TicketDto;
+import lombok.AllArgsConstructor;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+@AllArgsConstructor
 public class NumberReceiverFacade {
 
     NumberValidator numberValidator = new NumberValidator();
@@ -15,30 +18,27 @@ public class NumberReceiverFacade {
     public static final String SUCCEED_VALIDATION_MESSAGE = "success";
     private NumberReceiverRepository repository;
     private DrawDateGenerator drawDateGenerator;
+    private final Clock clock;
 
-    public NumberReceiverFacade(NumberReceiverRepository repository) {
-        this.repository = repository;
-    }
 
     public LotteryResponseDto receiveNumbers(Set<Integer> numbersFromUser) {
         if (numberValidator.validateNumbers(numbersFromUser)) {
-            return new LotteryResponseDto(null, FAILED_VALIDATION_MESSAGE, null);
+            return new LotteryResponseDto(null, FAILED_VALIDATION_MESSAGE, null, numbersFromUser);
         }
         String lotteryTicketID = UUID.randomUUID().toString();
-        LocalDateTime drawDate = LocalDateTime.now();
+        LocalDateTime drawDate = LocalDateTime.now(clock);
         Ticket save = repository.save(new Ticket(lotteryTicketID, drawDate, numbersFromUser));
 
-        return new LotteryResponseDto(save.lotteryTicketID(), SUCCEED_VALIDATION_MESSAGE, save.drawDate());
+        return new LotteryResponseDto(save.lotteryTicketID(), SUCCEED_VALIDATION_MESSAGE, save.drawDate(), save.numbersFromUser());
 
     }
 
     public List<TicketDto> userNumbers(LocalDateTime date) {
-        return List.of(
-                TicketDto.builder()
-                        .ticketID("1")
-                        .drawDate(LocalDateTime.now())
-                        .numbersFromUser(Set.of(1, 2, 3, 4, 5, 6))
-                        .build());
+        List<Ticket> allTicketsByDrawDate = repository.findAllTicketsByDrawDate(date);
+        return allTicketsByDrawDate
+                .stream()
+                .map(TicketMapper::mapFromTicket)
+                .toList();
     }
 }
 
