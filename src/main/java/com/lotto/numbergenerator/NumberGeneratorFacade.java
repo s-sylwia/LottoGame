@@ -18,6 +18,7 @@ public class NumberGeneratorFacade {
 
 
         public WinningTicketDto generateWinningTicket() {
+
             return null;
         }
 
