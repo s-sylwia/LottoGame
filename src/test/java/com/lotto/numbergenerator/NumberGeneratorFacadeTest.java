@@ -6,10 +6,6 @@ class NumberGeneratorFacadeTest {
 
 
     @Test
-    public void shouldThrowAnExceptionWhenWinningTicketHasLessThanSixNumbers() {
-    }
-
-    @Test
     public void shouldReturnWinningTicketByGivenDate() {
     }
 
@@ -25,7 +21,18 @@ class NumberGeneratorFacadeTest {
 //        when
 //        then
     }
-
+    @Test
+    public void shouldReturnNumbersInRangeOneToNinetyNine() {
+//        given
+//        when
+//        then
+    }
+    @Test
+    public void shouldReturnEmptyListWhenGeneratingZeroNumbers() {
+//        given
+//        when
+//        then
+    }
 
 
 

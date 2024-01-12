@@ -9,9 +9,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NumberGeneratorFacade {
 
-    @AllArgsConstructor
-    public class WinningNumbersGeneratorFacade {
-
         private final WinningTicketValidator winningNumberValidator;
         private final WinningTicketRepository winningTicketRepository;
         private final NumberReceiverFacade numberReceiverFacade;
@@ -34,6 +31,5 @@ public class NumberGeneratorFacade {
             return true;
         }
     }
-}
 
 
