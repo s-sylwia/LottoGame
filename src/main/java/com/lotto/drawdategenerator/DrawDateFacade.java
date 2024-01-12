@@ -1,12 +1,15 @@
 package com.lotto.drawdategenerator;
 
+import lombok.AllArgsConstructor;
+
 import java.time.Clock;
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
 public class DrawDateFacade {
 
     private final DrawDateGenerator drawDateGenerator;
-    private final Clock clock;
+    private Clock clock;
 
 
     public DrawDateFacade(Clock clock) {
