@@ -11,30 +11,36 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NumberGeneratorFacade {
 
-        private final WinningTicketValidator winningNumberValidator;
-        private final WinningTicketRepository winningTicketRepository;
-        private final NumberReceiverFacade numberReceiverFacade;
-        private final Clock clock;
+    private final WinningTicketValidator winningNumberValidator;
+    private final WinningTicketRepository winningTicketRepository;
+    private final NumberReceiverFacade numberReceiverFacade;
+    private final Clock clock;
 
-        private final DrawDateFacade drawDateFacade= new DrawDateFacade(clock);
+    private final DrawDateFacade drawDateFacade;
 
-
-        public WinningTicketDto generateWinningTicket() {
-
-            return null;
-        }
-
-        public WinningTicketDto retrieveWinningTicketByDate(LocalDateTime date) {
-            WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(date);
-            return WinningTicketDto.builder()
-                    .lotteryDate(winningTicketByDate.lotteryDate())
-                    .winningNumbers(winningTicketByDate.winningNumbers())
-                    .build();
-        }
-
-        public boolean isWinningTicketGeneratedByDate() {
-            return true;
-        }
+    public NumberGeneratorFacade(WinningTicketValidator winningNumberValidator, WinningTicketRepository winningTicketRepository, NumberReceiverFacade numberReceiverFacade, Clock clock) {
+        this.winningNumberValidator = winningNumberValidator;
+        this.winningTicketRepository = winningTicketRepository;
+        this.numberReceiverFacade = numberReceiverFacade;
+        this.clock = clock;
+        this.drawDateFacade = new DrawDateFacade(clock);
     }
 
+    public WinningTicketDto generateWinningTicket() {
+        // Implementacja logiki generowania zwycięskiego biletu
+        return null;
+    }
 
+    public WinningTicketDto retrieveWinningTicketByDate(LocalDateTime date) {
+        WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(date);
+        return WinningTicketDto.builder()
+                .lotteryDate(winningTicketByDate.lotteryDate())
+                .winningNumbers(winningTicketByDate.winningNumbers())
+                .build();
+    }
+
+    public boolean isWinningTicketGeneratedByDate() {
+        // Implementacja logiki sprawdzania, czy bilet został wygenerowany na podstawie daty
+        return true;
+    }
+}
