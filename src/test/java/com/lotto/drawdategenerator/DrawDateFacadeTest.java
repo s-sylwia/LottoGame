@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DrawDateFacadeTest {
-    private DrawDateFacade drawDateFacade;
 
     @Mock
     private DrawDateGenerator drawDateGenerator;
@@ -48,6 +47,14 @@ public class DrawDateFacadeTest {
 
     @Test
     public void shouldNotAllowInvalidDrawDate() {
+        LocalDateTime invalidDrawDate = LocalDateTime.of(2020, 1, 1, 12, 0);
+
+        // Sprawdzenie, czy metoda setDrawDate nie pozwala na ustawienie nieprawidłowej daty
+        boolean result = drawDateFacade.setDrawDate(invalidDrawDate);
+
+        assertFalse(result, "Setting invalid draw date should return false");
+        assertFalse(drawDateFacade.isDrawDateSet(), "Draw date should not be set");
+    }
     }
 
     @Test
