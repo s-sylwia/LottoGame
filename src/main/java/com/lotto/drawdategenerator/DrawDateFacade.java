@@ -9,12 +9,11 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class DrawDateFacade {
 
     private final DrawDateGenerator drawDateGenerator;
-    private Clock clock;
+    private final Clock clock;
 
 
     public DrawDateFacade(Clock clock) {
