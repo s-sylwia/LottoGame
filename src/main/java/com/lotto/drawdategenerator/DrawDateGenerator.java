@@ -20,6 +20,6 @@ class DrawDateGenerator {
     public LocalDateTime nextDrawDate(){
         LocalDateTime now = LocalDateTime.now(clock);
         LocalDateTime with = now.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
-        return with;
+        return with.with(DRAW_TIME);
     }
 }
