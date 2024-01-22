@@ -15,6 +15,7 @@ public class NumberGeneratorFacade {
     private final WinningTicketRepository winningTicketRepository;
     private final NumberReceiverFacade numberReceiverFacade;
     private final Clock clock;
+    private final RandomTicketGenerable;
 
     private final DrawDateFacade drawDateFacade;
 
@@ -27,7 +28,7 @@ public class NumberGeneratorFacade {
     }
 
     public WinningTicketDto generateWinningTicket() {
-        // Implementacja logiki generowania zwycięskiego biletu
+
         return null;
     }
 
@@ -40,7 +41,7 @@ public class NumberGeneratorFacade {
     }
 
     public boolean isWinningTicketGeneratedByDate() {
-        // Implementacja logiki sprawdzania, czy bilet został wygenerowany na podstawie daty
+
         return true;
     }
 }
