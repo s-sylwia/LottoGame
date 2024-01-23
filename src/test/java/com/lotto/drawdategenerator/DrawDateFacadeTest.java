@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import java.time.*;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -65,7 +66,10 @@ public class DrawDateFacadeTest {
 
     @Test
     public void shouldReturnFalseIfDrawDateIsNotSet() {
-//        assertFalse(drawDateFacade.isDrawDateSet(), "Draw date should not be set initially");
+        LocalDateTime nextSaturday= null;
+        when(drawDateGenerator.createNextDrawDate()).thenReturn(nextSaturday);
+        LocalDateTime result = drawDateFacade.nexDrawDate();
+        assertNull(result, "Draw date should be null");
     }
 
     @Test

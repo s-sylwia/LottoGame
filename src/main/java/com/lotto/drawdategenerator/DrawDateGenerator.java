@@ -1,12 +1,15 @@
 package com.lotto.drawdategenerator;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
 import java.time.*;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 @Data
+@Setter
 class DrawDateGenerator {
 
     private static final LocalTime DRAW_TIME = LocalTime.of(12, 0, 0);
