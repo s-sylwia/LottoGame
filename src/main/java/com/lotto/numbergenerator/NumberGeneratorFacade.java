@@ -15,7 +15,7 @@ public class NumberGeneratorFacade {
     private final WinningTicketRepository winningTicketRepository;
     private final NumberReceiverFacade numberReceiverFacade;
     private final Clock clock;
-    private final RandomTicketGenerable;
+//    private final RandomTicketGenerable;
 
     private final DrawDateFacade drawDateFacade;
 

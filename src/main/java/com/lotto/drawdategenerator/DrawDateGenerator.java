@@ -3,23 +3,32 @@ package com.lotto.drawdategenerator;
 import lombok.Data;
 
 import java.time.*;
+import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 @Data
 class DrawDateGenerator {
 
-    DrawDateGenerator drawDateGenerator;
-
     private static final LocalTime DRAW_TIME = LocalTime.of(12, 0, 0);
-    private  Clock clock;
+    private static final TemporalAdjuster NEXT_DRAW_DATE = TemporalAdjusters.next(DayOfWeek.SATURDAY);
+    private Clock clock;
 
     public DrawDateGenerator(Clock clock) {
         this.clock = clock;
     }
 
-    public LocalDateTime nextDrawDate(){
-        LocalDateTime now = LocalDateTime.now(clock);
-        LocalDateTime with = now.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
+    public LocalDateTime createNextDrawDate() {
+        LocalDateTime currrentTime = LocalDateTime.now(clock);
+
+        if (isSaturdayAndBeforeNoon(currrentTime)) {
+            return LocalDateTime.of(currrentTime.toLocalDate(), DRAW_TIME);
+        }
+        LocalDateTime with = currrentTime.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
         return with.with(DRAW_TIME);
     }
+
+    private boolean isSaturdayAndBeforeNoon(LocalDateTime currentDateTime) {
+        return currentDateTime.getDayOfWeek().equals(DayOfWeek.SATURDAY) && currentDateTime.toLocalTime().isBefore(DRAW_TIME);
+    }
+
 }
