@@ -53,7 +53,7 @@ public class NumberGeneratorFacade {
     }
 
     public boolean isWinningTicketGeneratedByDate() {
-
-        return true;
+        LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
+        return winningNumbersRepository.existsByDate(nextDrawDate);
     }
 }
