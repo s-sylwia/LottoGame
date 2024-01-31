@@ -16,7 +16,7 @@ public class NumberGeneratorFacade {
     private final WinningTicketRepository winningTicketRepository;
     private final NumberReceiverFacade numberReceiverFacade;
     private final Clock clock;
-//    private final RandomTicketGenerable;
+    private final RandomTicketGenerable;
 
     private final DrawDateFacade drawDateFacade;
 
@@ -33,11 +33,11 @@ public class NumberGeneratorFacade {
         SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
         Set<Integer> winningNumbers = sixRandomNumbersDto.numbers();
         winningNumberValidator.validate(winningNumbers);
-        WinningNumbers winningNumbersDocument = WinningNumbers.builder()
+        WinningTicket winningNumbersDocument = winningTicket.builder()
                 .winningNumbers(winningNumbers)
                 .date(nextDrawDate)
                 .build();
-        WinningNumbers savedNumbers = winningNumbersRepository.save(winningNumbersDocument);
+        WinningTicket savedNumbers = winningNumbersRepository.save(winningNumbersDocument);
         return WinningNumbersDto.builder()
                 .winningNumbers(savedNumbers.winningNumbers())
                 .date(savedNumbers.date())
