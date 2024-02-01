@@ -30,15 +30,15 @@ public class NumberGeneratorFacade {
 
     public WinningTicketDto generateWinningTicket() {
         LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
-        SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
+        SixRandomNumbersDto sixRandomNumbersDto = randomTicketGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
         Set<Integer> winningNumbers = sixRandomNumbersDto.numbers();
         winningNumberValidator.validate(winningNumbers);
         WinningTicket winningNumbersDocument = winningTicket.builder()
                 .winningNumbers(winningNumbers)
                 .date(nextDrawDate)
                 .build();
-        WinningTicket savedNumbers = winningNumbersRepository.save(winningNumbersDocument);
-        return WinningNumbersDto.builder()
+        WinningTicket savedNumbers = winningTicketRepository.save(winningNumbersDocument);
+        return WinningTicketDto.builder()
                 .winningNumbers(savedNumbers.winningNumbers())
                 .date(savedNumbers.date())
                 .build();
@@ -54,6 +54,6 @@ public class NumberGeneratorFacade {
 
     public boolean isWinningTicketGeneratedByDate() {
         LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
-        return winningNumbersRepository.existsByDate(nextDrawDate);
+        return winningTicketRepository.existsByDate(nextDrawDate);
     }
 }
