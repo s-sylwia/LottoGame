@@ -47,13 +47,12 @@ public class DrawDateFacadeTest {
     public void shouldNotAllowInvalidDrawDate() {
         LocalDateTime invalidDrawDate = LocalDateTime.of(2020, 1, 1, 12, 0);
 
-        // Ustawienie zachowania mocka - zawsze zwracaj przykładową datę (sobotę)
         when(drawDateGenerator.createNextDrawDate()).thenReturn(LocalDateTime.of(2024, 1, 20, 12, 0));
 
-//        boolean result = drawDateFacade.setDrawDate(invalidDrawDate);
-//
-//        assertFalse(result, "Setting invalid draw date should return false");
-//        assertFalse(drawDateFacade.isDrawDateSet(), "Draw date should not be set");
+        boolean result = drawDateFacade.setDrawDate(invalidDrawDate);
+
+        assertFalse(result, "Setting invalid draw date should return false");
+        assertFalse(drawDateFacade.isDrawDateSet(), "Draw date should not be set");
     }
 
 
