@@ -79,15 +79,15 @@ class NumberReceiverFacadeTest {
 
     @Test
     public void shouldReturnLotteryDate_16_12_2023whenTodayIs_14_12_2023() {
-//        Set<Integer> numbersFromUser = Set.of(2, 4, 5, 7, 6, 12);
-//        LotteryResponseDto lotteryResponseDto = numberReceiverFacade.receiveNumbers(numbersFromUser);
-//        LocalDateTime drawDate = LocalDateTime.of(2023,12,14,13,0,0);
-//        when(drawDateFacade.nexDrawDate()).thenReturn(drawDate);
-//        assertNotNull(lotteryResponseDto.drawDate(clock));
-//        assertEquals(LocalDateTime.of(2023, 12, 14, 15, 0, 0), lotteryResponseDto.drawDate());
+        Set<Integer> numbersFromUser = Set.of(2, 4, 5, 7, 6, 12);
+        LotteryResponseDto lotteryResponseDto = numberReceiverFacade.receiveNumbers(numbersFromUser);
+        LocalDateTime drawDate = LocalDateTime.of(2023,12,14,13,0,0);
+        when(drawDateFacade.nexDrawDate()).thenReturn(drawDate);
+        assertNotNull(lotteryResponseDto.drawDate());
+        assertEquals(LocalDateTime.of(2023, 12, 14, 15, 0, 0), lotteryResponseDto.drawDate());
 
-//
-//
+
+
 
     }
 
