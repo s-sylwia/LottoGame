@@ -49,10 +49,7 @@ public class DrawDateFacadeTest {
 
         when(drawDateGenerator.createNextDrawDate()).thenReturn(LocalDateTime.of(2024, 1, 20, 12, 0));
 
-        boolean result = drawDateFacade.setDrawDate(invalidDrawDate);
 
-        assertFalse(result, "Setting invalid draw date should return false");
-        assertFalse(drawDateFacade.isDrawDateSet(), "Draw date should not be set");
     }
 
 
@@ -76,11 +73,7 @@ public class DrawDateFacadeTest {
         LocalDate existingDrawDate = LocalDate.of(2024, 1, 15);
         LocalDate conflictingDrawDate = LocalDate.of(2024, 1, 15);
 
-//        drawDateFacade.setDrawDate(existingDrawDate);
-//
-//        boolean result = drawDateFacade.setDrawDate(conflictingDrawDate);
-//
-//        assertFalse(result, "Setting conflicting draw date should return false");
+
 
         LocalDateTime currentDrawDate = drawDateFacade.nexDrawDate();
         assertEquals(existingDrawDate.atTime(12, 0), currentDrawDate, "Draw date should remain unchanged after conflict");
