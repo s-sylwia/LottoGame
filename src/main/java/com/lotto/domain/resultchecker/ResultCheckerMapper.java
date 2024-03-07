@@ -26,7 +26,6 @@ class ResultCheckerMapper {
         return allTicketsByDate.stream()
                 .map(ticketDto -> Ticket.builder()
                         .drawDate(ticketDto.drawDate())
-                        .hash(ticketDto.hash())
                         .numbers(ticketDto.numbers())
                         .build())
                 .toList();

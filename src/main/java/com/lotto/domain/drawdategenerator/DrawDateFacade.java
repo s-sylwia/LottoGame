@@ -19,8 +19,7 @@ public class DrawDateFacade {
         this.clock = clock;
     }
 
-    public LocalDateTime nexDrawDate() {
-        LocalDateTime localDateTime = drawDateGenerator.createNextDrawDate();
-        return localDateTime;
+    public LocalDateTime nextDrawDate() {
+        return drawDateGenerator.createNextDrawDate();
     }
 }

@@ -9,6 +9,7 @@ class NumberGeneratorFacadeTest {
 
     NumberReceiverFacade numberReceiverFacade = mock(NumberReceiverFacade.class);
 
+
     @Test
     public void shouldReturnWinningTicketByGivenDate() {
 

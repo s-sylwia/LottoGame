@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @AllArgsConstructor
 public class NumberGeneratorFacade {
@@ -39,7 +38,7 @@ public class NumberGeneratorFacade {
     }
 
     public boolean isWinningTicketGeneratedByDate() {
-        LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
+        LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
         return winningTicketRepository.existsByDate(nextDrawDate);
     }
 }
