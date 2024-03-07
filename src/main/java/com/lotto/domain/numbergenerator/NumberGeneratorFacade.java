@@ -16,7 +16,7 @@ public class NumberGeneratorFacade {
     private final WinningTicketRepository winningTicketRepository;
     private final NumberReceiverFacade numberReceiverFacade;
     private final Clock clock;
-    private final RandomTicketGenerable randomTicketGenerable;
+//    private final RandomTicketGenerable randomTicketGenerable;
 
     private final DrawDateFacade drawDateFacade;
 
@@ -28,21 +28,7 @@ public class NumberGeneratorFacade {
         this.drawDateFacade = new DrawDateFacade(clock);
     }
 
-    public WinningTicketDto generateWinningTicket() {
-        LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
-        SixRandomNumbersDto sixRandomNumbersDto = randomTicketGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
-        Set<Integer> winningNumbers = sixRandomNumbersDto.numbers();
-        winningNumberValidator.validate(winningNumbers);
-        WinningTicket winningNumbersDocument = winningTicket.builder()
-                .winningNumbers(winningNumbers)
-                .date(nextDrawDate)
-                .build();
-        WinningTicket savedNumbers = winningTicketRepository.save(winningNumbersDocument);
-        return WinningTicketDto.builder()
-                .winningNumbers(savedNumbers.winningNumbers())
-                .date(savedNumbers.date())
-                .build();
-    }
+
 
     public WinningTicketDto retrieveWinningTicketByDate(LocalDateTime date) {
         WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(date);

@@ -73,8 +73,6 @@ public class DrawDateFacadeTest {
         LocalDate existingDrawDate = LocalDate.of(2024, 1, 15);
         LocalDate conflictingDrawDate = LocalDate.of(2024, 1, 15);
 
-
-
         LocalDateTime currentDrawDate = drawDateFacade.nexDrawDate();
         assertEquals(existingDrawDate.atTime(12, 0), currentDrawDate, "Draw date should remain unchanged after conflict");
     }

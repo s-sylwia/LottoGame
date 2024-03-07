@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Builder
 public record TicketDto(
-        String hash,
         Set<Integer> numbers,
         LocalDateTime drawDate,
         String message,
