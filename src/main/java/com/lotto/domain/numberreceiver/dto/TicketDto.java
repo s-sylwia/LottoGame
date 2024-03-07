@@ -10,5 +10,6 @@ public record TicketDto(
         Set<Integer> numbers,
         LocalDateTime drawDate,
         String message,
-        Integer age) {
+        String ticketId
+        ) {
 }

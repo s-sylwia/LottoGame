@@ -27,7 +27,7 @@ public class NumberReceiverFacade {
             return new LotteryResponseDto(null, FAILED_VALIDATION_MESSAGE, null, numbersFromUser);
         }
         String lotteryTicketID = UUID.randomUUID().toString();
-        LocalDateTime drawDate = drawDateFacade.nexDrawDate();
+        LocalDateTime drawDate = drawDateFacade.nextDrawDate();
         Ticket save = repository.save(new Ticket(lotteryTicketID, drawDate, numbersFromUser));
 
         return new LotteryResponseDto(save.lotteryTicketID(), SUCCEED_VALIDATION_MESSAGE, save.drawDate(), save.numbersFromUser());

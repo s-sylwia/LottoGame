@@ -1,79 +1,100 @@
 package com.lotto.domain.drawdategenerator;
 
-import com.lotto.domain.drawdategenerator.DrawDateFacade;
-import com.lotto.domain.drawdategenerator.DrawDateGenerator;
+import com.lotto.domain.numberreceiver.dto.LotteryResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import java.time.*;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 public class DrawDateFacadeTest {
 
-    @Mock
-    private DrawDateGenerator drawDateGenerator;
+    Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 1, 15, 10, 0).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
+    DrawDateGenerator drawDateGenerator1 = new DrawDateGenerator(fixedClock);
 
-    @InjectMocks
-    private DrawDateFacade drawDateFacade;
-
-    @BeforeEach
-    public void setUp() {
-        Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 1, 15, 10, 0).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
-        drawDateFacade = new DrawDateFacade(drawDateGenerator, fixedClock);
-    }
+    private DrawDateFacade drawDateFacade = new DrawDateFacade(drawDateGenerator1, fixedClock);
 
 
     @Test
-    public void shouldSetLotteryDateToSaturday() {
-        when(drawDateGenerator.createNextDrawDate()).thenReturn(LocalDateTime.of(2024, 1, 20, 12, 0));
+    public void shouldReturnLotteryDate_9_03_2024whenTodayIs_7_03_2024() {
+//        given
+        Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 3, 7, 10, 0).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
+        DrawDateGenerator drawDateGenerator1 = new DrawDateGenerator(fixedClock);
+        drawDateFacade = new DrawDateFacade(drawDateGenerator1, fixedClock);
+//when
+        LocalDateTime drawDate = drawDateFacade.nextDrawDate();
+//        then
+        assertEquals(LocalDateTime.of(2024, 3, 9, 12, 0, 0), drawDate);
 
-        LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
+    }
+    @Test
+    public void shouldReturnLotteryDate_16_03_2024whenTodayIs_9_03_2024_12_hour_00_minutes() {
+//        given
+        Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 3, 9, 12, 0).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
+        DrawDateGenerator drawDateGenerator1 = new DrawDateGenerator(fixedClock);
+        drawDateFacade = new DrawDateFacade(drawDateGenerator1, fixedClock);
+//when
+        LocalDateTime drawDate = drawDateFacade.nextDrawDate();
+//        then
+        assertEquals(LocalDateTime.of(2024, 3, 16, 12, 0, 0), drawDate);
+
+    }
+    @Test
+    public void shouldReturnLotteryDate_16_03_2024whenTodayIs_9_03_2024_12_hour_00_minutes_01_seconds() {
+//        given
+        Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 3, 9, 12, 0,1).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
+        DrawDateGenerator drawDateGenerator1 = new DrawDateGenerator(fixedClock);
+        drawDateFacade = new DrawDateFacade(drawDateGenerator1, fixedClock);
+//when
+        LocalDateTime drawDate = drawDateFacade.nextDrawDate();
+//        then
+        assertEquals(LocalDateTime.of(2024, 3, 16, 12, 0, 0), drawDate);
+
+    }
+
+    @Test
+    public void shouldReturnLotteryDate_9_03_2024whenTodayIs_9_03_2024_11_hour_59_minutes_59_seconds() {
+//        given
+        Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 3, 9, 11, 59, 59).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
+        DrawDateGenerator drawDateGenerator1 = new DrawDateGenerator(fixedClock);
+        drawDateFacade = new DrawDateFacade(drawDateGenerator1, fixedClock);
+//when
+        LocalDateTime drawDate = drawDateFacade.nextDrawDate();
+//        then
+        assertEquals(LocalDateTime.of(2024, 3, 9, 12, 0, 0), drawDate);
+
+    }
+    @Test
+    public void shouldSetLotteryDateToSaturday() {
+
+        LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
         assertEquals(DayOfWeek.SATURDAY, nextDrawDate.getDayOfWeek(), "Lottery date should be set to Saturday");
     }
 
     @Test
     public void shouldRetrieveNextDrawDate() {
-        when(drawDateGenerator.createNextDrawDate()).thenReturn(LocalDateTime.of(2024, 1, 20, 12, 0));
 
-        LocalDateTime nextDrawDate = drawDateFacade.nexDrawDate();
+        LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
         assertNotNull(nextDrawDate, "Next draw date should not be null");
     }
 
-    @Test
-    public void shouldNotAllowInvalidDrawDate() {
-        LocalDateTime invalidDrawDate = LocalDateTime.of(2020, 1, 1, 12, 0);
 
-        when(drawDateGenerator.createNextDrawDate()).thenReturn(LocalDateTime.of(2024, 1, 20, 12, 0));
-
-
-    }
 
 
     @Test
     public void shouldReturnTrueIfDrawDateIsSet() {
         LocalDateTime drawDate = LocalDateTime.of(2024, 1, 22, 12, 0);
-        LocalDateTime nextSaturday= drawDateGenerator.createNextDrawDate();
+        LocalDateTime nextSaturday = drawDateGenerator1.createNextDrawDate();
         assertNotNull(nextSaturday);
+
     }
 
-    @Test
-    public void shouldReturnFalseIfDrawDateIsNotSet() {
-        LocalDateTime nextSaturday= null;
-        when(drawDateGenerator.createNextDrawDate()).thenReturn(nextSaturday);
-        LocalDateTime result = drawDateFacade.nexDrawDate();
-        assertNull(result, "Draw date should be null");
-    }
 
-    @Test
-    public void shouldHandleDrawDateConflictGracefully() {
-        LocalDate existingDrawDate = LocalDate.of(2024, 1, 15);
-        LocalDate conflictingDrawDate = LocalDate.of(2024, 1, 15);
 
-        LocalDateTime currentDrawDate = drawDateFacade.nexDrawDate();
-        assertEquals(existingDrawDate.atTime(12, 0), currentDrawDate, "Draw date should remain unchanged after conflict");
-    }
+
 }
