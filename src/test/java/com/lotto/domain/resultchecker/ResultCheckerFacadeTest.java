@@ -26,7 +26,6 @@ class ResultCheckerFacadeTest {
         List<ResultDto> result = resultCheckerFacade.generateAllPlayers();
 
         //then
-        // Add assertions based on your requirements
     }
 
     @Test
