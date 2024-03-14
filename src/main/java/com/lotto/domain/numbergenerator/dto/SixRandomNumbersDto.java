@@ -1,4 +1,4 @@
-package com.lotto.domain.numbergenerator;
+package com.lotto.domain.numbergenerator.dto;
 
 import lombok.Builder;
 
