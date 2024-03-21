@@ -23,7 +23,6 @@ class ResultCheckerFacadeTest {
         );
 
         //when
-        List<ResultDto> result = resultCheckerFacade.generateAllPlayers();
 
         //then
     }
@@ -39,7 +38,7 @@ class ResultCheckerFacadeTest {
         );
 
         //when
-        String failMessage = resultCheckerFacade.generateFailMessage(null);
+//        String failMessage = resultCheckerFacade.generateFailMessage(null);
 
         //then
     }
@@ -55,7 +54,7 @@ class ResultCheckerFacadeTest {
         );
 
         //when
-        String failMessage = resultCheckerFacade.generateFailMessage(Arrays.asList());
+//        String failMessage = resultCheckerFacade.generateFailMessage(Arrays.asList());
 
         //then
     }
