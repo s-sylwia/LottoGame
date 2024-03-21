@@ -27,8 +27,6 @@ public class NumberGeneratorFacade {
         this.drawDateFacade = new DrawDateFacade(clock);
     }
 
-
-
     public WinningTicketDto retrieveWinningTicketByDate(LocalDateTime date) {
         WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(date);
         return WinningTicketDto.builder()
