@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 
 @Repository
-interface WinningTicketRepository {
+public interface WinningTicketRepository {
 
     WinningTicket save(WinningTicket winningTicket);
 
