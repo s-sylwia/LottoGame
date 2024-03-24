@@ -21,7 +21,6 @@ public class NumberGeneratorFacade {
     private final DrawDateFacade drawDateFacade;
     private final NumberReceiverFacade properties;
 
-
     public WinningTicketDto generateWinningTicket() {
         LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
         SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
