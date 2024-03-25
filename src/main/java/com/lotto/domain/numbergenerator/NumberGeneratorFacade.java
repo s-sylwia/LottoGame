@@ -19,11 +19,11 @@ public class NumberGeneratorFacade {
     private final RandomNumberGenerable randomGenerable;
     private final Clock clock;
     private final DrawDateFacade drawDateFacade;
-    private final NumberReceiverFacade properties;
+    private final NumberGeneratorFacade properties;
 
     public WinningTicketDto generateWinningTicket() {
         LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
-        SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.count(), properties.lowerBand(), properties.upperBand());
+        SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.generateWinningTicket(), properties.lowerBand(), properties.upperBand());
         Set<Integer> winningNumbers = sixRandomNumbersDto.numbers();
         winningNumberValidator.validate(winningNumbers);
         WinningTicket winningNumbersDocument = WinningTicket.builder()
