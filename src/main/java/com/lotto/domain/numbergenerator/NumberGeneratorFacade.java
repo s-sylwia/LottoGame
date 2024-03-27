@@ -16,14 +16,14 @@ public class NumberGeneratorFacade {
     private final WinningTicketValidator winningNumberValidator;
     private final WinningTicketRepository winningTicketRepository;
     private final NumberReceiverFacade numberReceiverFacade;
-    private final RandomNumberGenerable randomGenerable;
+    private final RandomNumberGenerable randomNumberGenerable;
     private final Clock clock;
     private final DrawDateFacade drawDateFacade;
     private final NumberGeneratorFacade properties;
 
     public WinningTicketDto generateWinningTicket() {
         LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
-        SixRandomNumbersDto sixRandomNumbersDto = randomGenerable.generateSixRandomNumbers(properties.generateWinningTicket(), properties.lowerBand(), properties.upperBand());
+        SixRandomNumbersDto sixRandomNumbersDto = randomNumberGenerable.generateSixRandomNumbers(properties.generateWinningTicket(), properties.lowerBand(), properties.upperBand());
         Set<Integer> winningNumbers = sixRandomNumbersDto.numbers();
         winningNumberValidator.validate(winningNumbers);
         WinningTicket winningNumbersDocument = WinningTicket.builder()
