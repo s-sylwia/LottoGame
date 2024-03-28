@@ -13,13 +13,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class NumberGeneratorFacade {
 
+    private final RandomNumberGenerable randomNumberGenerable;
     private final WinningTicketValidator winningNumberValidator;
     private final WinningTicketRepository winningTicketRepository;
-    private final NumberReceiverFacade numberReceiverFacade;
-    private final RandomNumberGenerable randomNumberGenerable;
-    private final Clock clock;
     private final DrawDateFacade drawDateFacade;
-    private final NumberGeneratorFacade properties;
 
     public WinningTicketDto generateWinningTicket() {
         LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
