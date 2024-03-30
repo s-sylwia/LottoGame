@@ -35,7 +35,7 @@ public class NumberGeneratorFacade {
     }
 
         public WinningTicketDto retrieveWinningTicketByDate (LocalDateTime date){
-            WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(date)
+            WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(date);
             return WinningTicketDto.builder()
                     .winningNumbers(winningTicketByDate.winningNumbers())
                     .lotteryDate(winningTicketByDate.lotteryDate())
@@ -47,4 +47,3 @@ public class NumberGeneratorFacade {
             return winningTicketRepository.existsByDate(nextDrawDate);
         }
     }
-}
