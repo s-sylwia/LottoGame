@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Builder
+public
 record WinningTicket(String winningNumbersId, LocalDateTime lotteryDate, Set<Integer> winningNumbers) {
 
 
