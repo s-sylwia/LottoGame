@@ -1,4 +1,4 @@
-package com.lotto.domain.resultannouncer.dto;
+package com.lotto.domain.resultannouncer;
 
 public record ResultAnnouncerResponseDto(
         ResponseDto responseDto,

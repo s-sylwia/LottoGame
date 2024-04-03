@@ -1,4 +1,4 @@
-package com.lotto.domain.resultannouncer.dto;
+package com.lotto.domain.resultannouncer;
 
 import lombok.Builder;
 
@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Builder
 public record ResponseDto(
-        String hash,
         Set<Integer> numbers,
         Set<Integer> hitNumbers,
         Set<Integer> wonNumbers,
