@@ -1,6 +1,5 @@
 package com.lotto.domain.resultchecker;
 
-
 import java.util.Optional;
 
 

@@ -6,8 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Builder
-public record ResultDto(String hash,
-                        Set<Integer> numbers,
+public record ResultDto(Set<Integer> numbers,
                         Set<Integer> hitNumbers,
                         LocalDateTime drawDate,
                         boolean isWinner,

@@ -30,7 +30,6 @@ class WinnersRetriever {
             builder.isWinner(true);
         }
         return builder
-                .hash(ticket.hash())
                 .numbers(ticket.numbers())
                 .hitNumbers(hitNumbers)
                 .drawDate(ticket.drawDate())
