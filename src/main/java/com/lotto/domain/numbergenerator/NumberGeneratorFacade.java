@@ -44,6 +44,18 @@ public class NumberGeneratorFacade {
                 .build();
     }
 
+
+    public WinningTicketDto retrieveWinningTicketByPreviousDate() {
+        LocalDateTime previosDrawDate = drawDateFacade.previousDrawDate();
+        WinningTicket winningTicketByDate = winningTicketRepository.findWinningTicketsByDate(previosDrawDate);
+        if (winningTicketByDate == null) {
+            throw new WinningTicketNotFoundException("Winning ticket for this date does not exist.");
+        }
+        return WinningTicketDto.builder()
+                .winningNumbers(winningTicketByDate.winningNumbers())
+                .lotteryDate(winningTicketByDate.lotteryDate())
+                .build();
+    }
     public boolean isWinningTicketGeneratedByDate() {
         LocalDateTime nextDrawDate = drawDateFacade.nextDrawDate();
         return winningTicketRepository.existsByDate(nextDrawDate);

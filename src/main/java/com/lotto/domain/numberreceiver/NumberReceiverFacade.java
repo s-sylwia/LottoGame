@@ -41,6 +41,15 @@ public class NumberReceiverFacade {
                 .map(TicketMapper::mapFromTicket)
                 .toList();
     }
+
+    public List<TicketDto> userNumbersForPreviousDrawDate() {
+        LocalDateTime localDateTime = drawDateFacade.previousDrawDate();
+        List<Ticket> allTicketsByDrawDate = repository.findAllTicketsByDrawDate(localDateTime);
+        return allTicketsByDrawDate
+                .stream()
+                .map(TicketMapper::mapFromTicket)
+                .toList();
+    }
 }
 
 

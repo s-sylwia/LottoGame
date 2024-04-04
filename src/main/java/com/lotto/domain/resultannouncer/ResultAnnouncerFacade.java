@@ -18,23 +18,23 @@ public class ResultAnnouncerFacade {
     public ResultAnnouncerResponseDto checkResult(String hash) {
         Optional<ResultResponse> cachedResponse = responseRepository.findById(hash);
         if (cachedResponse.isPresent()) {
-            return new ResultAnnouncerResponseDto(ResultMapper.mapToDto(cachedResponse.get()), MessageResponse.ALREADY_CHECKED);
+            return new ResultAnnouncerResponseDto(ResultMapper.mapToDto(cachedResponse.get()), MessageResponse.ALREADY_CHECKED.info);
         }
 
         ResultDto resultDto = resultCheckerFacade.findByTicketId(hash);
         if (resultDto == null) {
-            return new ResultAnnouncerResponseDto(null, MessageResponse.HASH_DOES_NOT_EXIST_MESSAGE);
+            return new ResultAnnouncerResponseDto(null, MessageResponse.HASH_DOES_NOT_EXIST_MESSAGE.info);
         }
 
         ResponseDto responseDto = buildResponseDto(resultDto);
         ResultResponse savedResponse = responseRepository.save(buildResponse(responseDto, LocalDateTime.now(clock)));
 
         if (!isAfterResultAnnouncementTime(resultDto)) {
-            return new ResultAnnouncerResponseDto(responseDto, MessageResponse.WAIT_MESSAGE);
+            return new ResultAnnouncerResponseDto(responseDto, MessageResponse.WAIT_MESSAGE.info);
         }
 
         MessageResponse message = resultDto.isWinner() ? MessageResponse.WIN_MESSAGE : MessageResponse.LOSE_MESSAGE;
-        return new ResultAnnouncerResponseDto(responseDto, message);
+        return new ResultAnnouncerResponseDto(responseDto, message.info);
     }
 
     private ResultResponse buildResponse(ResponseDto responseDto, LocalDateTime now) {
