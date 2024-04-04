@@ -1,8 +1,8 @@
 package com.lotto.domain.resultannouncer;
 
+import com.lotto.domain.resultchecker.ResultCheckerFacade;
+import com.lotto.domain.resultchecker.ResultDto;
 import lombok.AllArgsConstructor;
-import pl.lotto.domain.resultchecker.ResultCheckerFacade;
-import pl.lotto.domain.resultchecker.dto.ResultDto;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
