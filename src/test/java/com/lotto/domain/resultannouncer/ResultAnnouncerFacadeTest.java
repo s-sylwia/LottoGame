@@ -1,19 +1,14 @@
 package com.lotto.domain.resultannouncer;
 
+import com.lotto.domain.resultchecker.ResultCheckerFacade;
+import com.lotto.domain.resultchecker.ResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import pl.lotto.domain.resultchecker.ResultCheckerFacade;
-import pl.lotto.domain.resultchecker.dto.ResultDto;
 
 import java.time.Clock;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

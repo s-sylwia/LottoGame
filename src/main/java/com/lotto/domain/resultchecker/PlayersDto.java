@@ -1,5 +1,6 @@
-package com.lotto.domain.resultchecker.dto;
+package com.lotto.domain.resultchecker;
 
+import com.lotto.domain.resultchecker.ResultDto;
 import lombok.Builder;
 
 import java.util.List;

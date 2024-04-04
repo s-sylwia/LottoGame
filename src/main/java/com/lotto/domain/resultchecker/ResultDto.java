@@ -1,4 +1,4 @@
-package com.lotto.domain.resultchecker.dto;
+package com.lotto.domain.resultchecker;
 
 import lombok.Builder;
 

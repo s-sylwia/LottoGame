@@ -2,11 +2,9 @@ package com.lotto.domain.resultchecker;
 
 import com.lotto.domain.numbergenerator.NumberGeneratorFacade;
 import com.lotto.domain.numberreceiver.NumberReceiverFacade;
-import com.lotto.domain.resultchecker.dto.ResultDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
@@ -54,7 +52,7 @@ class ResultCheckerFacadeTest {
         );
 
         //when
-//        String failMessage = resultCheckerFacade.generateFailMessage(Arrays.asList());
+        String failMessage = resultCheckerFacade.generateFailMessage(Arrays.asList());
 
         //then
     }

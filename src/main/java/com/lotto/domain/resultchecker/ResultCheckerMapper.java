@@ -1,9 +1,10 @@
 package com.lotto.domain.resultchecker;
 
+import com.lotto.domain.numberreceiver.dto.TicketDto;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import pl.lotto.domain.numberreceiver.dto.TicketDto;
-import pl.lotto.domain.resultchecker.dto.ResultDto;
+
 
 class ResultCheckerMapper {
 
@@ -23,7 +24,6 @@ class ResultCheckerMapper {
         return allTicketsByDate.stream()
                 .map(ticketDto -> Ticket.builder()
                         .drawDate(ticketDto.drawDate())
-                        .hash(ticketDto.hash())
                         .numbers(ticketDto.numbers())
                         .build())
                 .toList();
