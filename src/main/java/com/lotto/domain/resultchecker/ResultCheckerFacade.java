@@ -22,9 +22,11 @@ public class ResultCheckerFacade {
 
 
     public PlayersDto generateResults() {
-        List<TicketDto> allTicketsByDate = numberReceiverFacade.retrieveAllTicketsByNextDrawDate();
+        List<TicketDto> allTicketsByDate = numberReceiverFacade.userNumbersForPreviousDrawDate();
         List<Ticket> tickets = ResultCheckerMapper.mapFromTicketDto(allTicketsByDate);
-        WinningTicketDto winningNumbersDto = winningTicketGeneratorFacade.generateWinningNumbers();
+        WinningTicketDto winningNumbersDto = numberGeneratorFacade.retrieveWinningTicketByPreviousDate();
+
+        
         Set<Integer> winningNumbers = winningNumbersDto.getWinningNumbers();
         if (winningNumbers == null || winningNumbers.isEmpty()) {
             return PlayersDto.builder()

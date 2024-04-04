@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.UUID;
 
 @Data
 class DrawDateGenerator {
@@ -16,18 +17,30 @@ class DrawDateGenerator {
     private static final TemporalAdjuster NEXT_DRAW_DATE = TemporalAdjusters.next(DayOfWeek.SATURDAY);
     private Clock clock;
 
+    DrawDateRepository drawDateRepository;
+
     public DrawDateGenerator(Clock clock) {
         this.clock = clock;
     }
 
-    public LocalDateTime createNextDrawDate() {
+     LocalDateTime createNextDrawDate() {
         LocalDateTime currentTime = LocalDateTime.now(clock);
 
         if (isSaturdayAndBeforeNoon(currentTime)) {
-            return LocalDateTime.of(currentTime.toLocalDate(), DRAW_TIME);
+            LocalDateTime of = LocalDateTime.of(currentTime.toLocalDate(), DRAW_TIME);
+            drawDateRepository.save(new DrawDateLog(of, 1L));
+            return of;
         }
         LocalDateTime with = currentTime.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
-        return with.with(DRAW_TIME);
+        LocalDateTime with1 = with.with(DRAW_TIME);
+        drawDateRepository.save(new DrawDateLog(with1, 2L));
+        return with1;
+    }
+
+     LocalDateTime findPreviousDrawDate(){
+        LocalDateTime currentTime = LocalDateTime.now(clock);
+        LocalDateTime byDate = drawDateRepository.findByDate(currentTime).drawDate;
+        return byDate;
     }
 
     private boolean isSaturdayAndBeforeNoon(LocalDateTime currentDateTime) {
