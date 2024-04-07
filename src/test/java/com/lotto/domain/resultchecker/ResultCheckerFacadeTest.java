@@ -23,6 +23,7 @@ class ResultCheckerFacadeTest {
         //when
 
         //then
+
     }
 
     @Test
@@ -71,5 +72,6 @@ class ResultCheckerFacadeTest {
         ResultDto resultDto = resultCheckerFacade.findByTicketId("someTicketId");
 
         //then
+
     }
 }
