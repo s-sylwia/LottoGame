@@ -27,14 +27,14 @@ class DrawDateGenerator {
         LocalDateTime currentTime = LocalDateTime.now(clock);
 
         if (isSaturdayAndBeforeNoon(currentTime)) {
-            LocalDateTime of = LocalDateTime.of(currentTime.toLocalDate(), DRAW_TIME);
-            drawDateRepository.save(new DrawDateLog(of, 1L));
-            return of;
+            LocalDateTime drawDateBeforeNoon = LocalDateTime.of(currentTime.toLocalDate(), DRAW_TIME);
+            drawDateRepository.save(new DrawDateLog(drawDateBeforeNoon, 1L));
+            return drawDateBeforeNoon;
         }
         LocalDateTime with = currentTime.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
-        LocalDateTime with1 = with.with(DRAW_TIME);
-        drawDateRepository.save(new DrawDateLog(with1, 2L));
-        return with1;
+        LocalDateTime drawDateAfterNoon = with.with(DRAW_TIME);
+        drawDateRepository.save(new DrawDateLog(drawDateAfterNoon, 2L));
+        return drawDateAfterNoon;
     }
 
      LocalDateTime findPreviousDrawDate(){
