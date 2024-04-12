@@ -8,4 +8,7 @@ import java.util.Set;
 
 @Builder
 public record WinningTicketDto (LocalDateTime lotteryDate, Set<Integer> winningNumbers){
+    public Set<Integer> getWinningNumbers() {
+        return null;
+    }
 }
