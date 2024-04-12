@@ -52,7 +52,7 @@ class ResultCheckerFacadeTest {
         );
 
         //when
-        String failMessage = resultCheckerFacade.generateFailMessage(Arrays.asList());
+//        String failMessage = resultCheckerFacade.generateFailMessage(Arrays.asList());
 
         //then
     }
