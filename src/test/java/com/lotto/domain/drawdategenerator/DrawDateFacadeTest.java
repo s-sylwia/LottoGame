@@ -5,8 +5,8 @@ import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DrawDateFacadeTest {
     Clock fixedClock = Clock.fixed(LocalDateTime.of(2024, 1, 15, 10, 0).atZone(ZoneId.systemDefault()).toInstant(), ZoneId.systemDefault());
@@ -86,4 +86,15 @@ public class DrawDateFacadeTest {
 //  then
         assertNotNull(nextSaturday);
     }
+
+    @Test
+    public void shouldReturnFalseIfDrawDateIsNotSet() {
+//  given
+        drawDateFacade.clearDrawDate(); // Wstawiamy metodę do czyszczenia daty losowania
+//  when
+        LocalDateTime nextSaturday = drawDateGenerator1.createNextDrawDate();
+//  then
+        assertNull(nextSaturday, "Next draw date should be null when draw date is not set");
+    }
+
 }
