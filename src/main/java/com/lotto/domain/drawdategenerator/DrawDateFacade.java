@@ -26,4 +26,7 @@ public class DrawDateFacade {
     public LocalDateTime previousDrawDate(){
         return drawDateGenerator.findPreviousDrawDate();
     }
+
+    public void clearDrawDate() {
+    }
 }
