@@ -28,5 +28,7 @@ public class DrawDateFacade {
     }
 
     public void clearDrawDate() {
+//        drawDateRepository.save(new DrawDateLog(null, null)); // Zapisuje "pustą" datę losowania
     }
+
 }
