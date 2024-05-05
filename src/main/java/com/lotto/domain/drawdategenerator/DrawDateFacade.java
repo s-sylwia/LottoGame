@@ -27,8 +27,6 @@ public class DrawDateFacade {
         return drawDateGenerator.findPreviousDrawDate();
     }
 
-    public void clearDrawDate() {
-//        drawDateRepository.save(new DrawDateLog(null, null)); // Zapisuje "pustą" datę losowania
-    }
+
 
 }

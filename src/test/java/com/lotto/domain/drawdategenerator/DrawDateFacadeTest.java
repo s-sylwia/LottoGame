@@ -87,14 +87,6 @@ public class DrawDateFacadeTest {
         assertNotNull(nextSaturday);
     }
 
-    @Test
-    public void shouldReturnFalseIfDrawDateIsNotSet() {
-//  given
-        drawDateFacade.clearDrawDate(); // Wstawiamy metodę do czyszczenia daty losowania
-//  when
-        LocalDateTime nextSaturday = drawDateGenerator1.createNextDrawDate();
-//  then
-        assertNull(nextSaturday, "Next draw date should be null when draw date is not set");
-    }
+
 
 }
