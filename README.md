@@ -33,3 +33,10 @@ The Lotto application allows players to enter their numbers, check if they won o
 - To run unit tests, use the command `mvn test`.
 - Tests cover all application functionalities, including checking the correctness of entered numbers, fetching data from the HTTP server, and verifying draw results.
 
+## Security
+- The application ensures secure communication with the remote server and protects user data.
+- HTTPS is utilized for all HTTP communication to prevent data interception.
+- User input is validated and sanitized to prevent injection attacks.
+
+## Deployment
+- Considerations for deploying the application in different environments, such as production or staging, are provided in the `deployment.md` file.
