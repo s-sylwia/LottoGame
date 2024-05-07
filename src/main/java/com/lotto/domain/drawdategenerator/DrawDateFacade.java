@@ -2,7 +2,6 @@ package com.lotto.domain.drawdategenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
 import java.time.Clock;
 import java.time.LocalDateTime;
 
