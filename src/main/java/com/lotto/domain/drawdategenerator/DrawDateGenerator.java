@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
-import java.util.UUID;
 
 @Data
 class DrawDateGenerator {
@@ -19,11 +18,16 @@ class DrawDateGenerator {
 
     DrawDateRepository drawDateRepository;
 
+    public DrawDateGenerator(Clock clock, DrawDateRepository drawDateRepository) {
+        this.clock = clock;
+        this.drawDateRepository = drawDateRepository;
+    }
+
     public DrawDateGenerator(Clock clock) {
         this.clock = clock;
     }
 
-     LocalDateTime createNextDrawDate() {
+    LocalDateTime createNextDrawDate() {
         LocalDateTime currentTime = LocalDateTime.now(clock);
 
         if (isSaturdayAndBeforeNoon(currentTime)) {
@@ -37,7 +41,7 @@ class DrawDateGenerator {
         return drawDateAfterNoon;
     }
 
-     LocalDateTime findPreviousDrawDate(){
+    LocalDateTime findPreviousDrawDate() {
         LocalDateTime currentTime = LocalDateTime.now(clock);
         LocalDateTime byDate = drawDateRepository.findByDate(currentTime).drawDate;
         return byDate;
