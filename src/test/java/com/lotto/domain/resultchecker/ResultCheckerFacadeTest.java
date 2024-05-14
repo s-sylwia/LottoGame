@@ -4,8 +4,6 @@ import com.lotto.domain.numbergenerator.NumberGeneratorFacade;
 import com.lotto.domain.numberreceiver.NumberReceiverFacade;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.mockito.Mockito.mock;
 
 class ResultCheckerFacadeTest {
