@@ -86,11 +86,11 @@ public class DrawDateFacadeTest {
         assertNotNull(nextSaturday);
     }
 
-//    @Test
-//    public void shouldReturnPreviousDrawDate() {
-//        //  when
-//        LocalDateTime previousDrawDate = drawDateFacade.previousDrawDate();
-//        //  then
-//        assertNotNull(previousDrawDate, "Previous draw date should not be null");
-//    }
+    @Test
+    public void shouldReturnPreviousDrawDate() {
+        //  when
+        LocalDateTime previousDrawDate = drawDateFacade.previousDrawDate();
+        //  then
+        assertNotNull(previousDrawDate, "Previous draw date should not be null");
+    }
 }
