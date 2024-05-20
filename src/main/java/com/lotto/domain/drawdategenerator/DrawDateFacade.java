@@ -2,6 +2,7 @@ package com.lotto.domain.drawdategenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import java.time.Clock;
 import java.time.LocalDateTime;
 
@@ -18,14 +19,12 @@ public class DrawDateFacade {
     }
 
     public LocalDateTime nextDrawDate() {
-
         return drawDateGenerator.createNextDrawDate();
     }
 
-    public LocalDateTime previousDrawDate(){
+    public LocalDateTime previousDrawDate() {
         return drawDateGenerator.findPreviousDrawDate();
     }
-
 
 
 }

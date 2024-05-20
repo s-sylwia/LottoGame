@@ -16,7 +16,7 @@ public class DrawDateRepositoryImpl implements DrawDateRepository {
 
     @Override
     public DrawDateLog findByDate(LocalDateTime currentTime) {
-        // Tutaj dodaj logikę wyszukiwania po dacie
+
         return null;
     }
 }
