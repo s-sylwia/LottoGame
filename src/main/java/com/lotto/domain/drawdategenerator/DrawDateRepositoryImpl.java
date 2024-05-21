@@ -1,6 +1,5 @@
 package com.lotto.domain.drawdategenerator;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,13 @@ public class DrawDateRepositoryImpl implements DrawDateRepository {
 
     @Override
     public DrawDateLog findByDate(LocalDateTime currentTime) {
-
-        return null;
-    }
-}
+        public DrawDateLog findByDate (LocalDateTime currentTime){
+            for (DrawDateLog drawDateLog : drawDateLogs) {
+                if (drawDateLog.getDrawDate().isEqual(currentTime)) {
+                    return drawDateLog;
+                }
+            }
+            return null;
+        }
+    }}
 
