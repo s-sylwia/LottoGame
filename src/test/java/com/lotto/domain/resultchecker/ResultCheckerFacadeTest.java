@@ -5,9 +5,7 @@ import com.lotto.domain.numberreceiver.NumberReceiverFacade;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;
-
 class ResultCheckerFacadeTest {
-
     @Test
     public void shouldGenerateAllPlayersWithCorrectMessage() {
         //given
