@@ -15,7 +15,6 @@ public class DrawDateRepositoryImpl implements DrawDateRepository {
 
     @Override
     public DrawDateLog findByDate(LocalDateTime currentTime) {
-        public DrawDateLog findByDate (LocalDateTime currentTime){
             for (DrawDateLog drawDateLog : drawDateLogs) {
                 if (drawDateLog.getDrawDate().isEqual(currentTime)) {
                     return drawDateLog;
@@ -23,5 +22,5 @@ public class DrawDateRepositoryImpl implements DrawDateRepository {
             }
             return null;
         }
-    }}
+    }
 
