@@ -1,6 +1,13 @@
 package com.lotto.domain.resultchecker;
 
+import com.lotto.domain.numberreceiver.dto.TicketDto;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
+
+import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Switch.CaseOperator.when;
 
 class ResultCheckerFacadeTest {
 
