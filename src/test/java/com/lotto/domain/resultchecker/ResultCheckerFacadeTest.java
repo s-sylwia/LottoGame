@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Switch.CaseOperator.when;
 
 class ResultCheckerFacadeTest {
@@ -82,7 +83,7 @@ class ResultCheckerFacadeTest {
         String message = playersDto.message();
         assertThat(message).isEqualTo("Winners failed to retrieve");
 
-
+    }
         @Test
         public void shouldGenerateFailMessageWhenWinningNumbersIsEmpty () {
             //given
@@ -140,4 +141,3 @@ class ResultCheckerFacadeTest {
             assertThat(resultDto).isEqualTo(expectedResult);
         }
     }
-}
