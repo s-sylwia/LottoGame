@@ -4,10 +4,8 @@ import com.lotto.domain.drawdategenerator.DrawDateFacade;
 import com.lotto.domain.numbergenerator.dto.SixRandomNumbersDto;
 import com.lotto.domain.numbergenerator.dto.WinningTicketDto;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -25,13 +23,11 @@ class NumberGeneratorFacadeTest {
 
         // when
         WinningTicketDto result = numberGeneratorFacade.retrieveWinningTicketByDate(date);
-
         // then
         assertNotNull(result);
         assertEquals(expectedTicket.winningNumbers(), result.winningNumbers());
         assertEquals(expectedTicket.lotteryDate(), result.lotteryDate());
     }
-
     @Test
     public void shouldReturnUniqueLotteryID() {
         // given
@@ -40,7 +36,6 @@ class NumberGeneratorFacadeTest {
         WinningTicketRepository winningTicketRepository = mock(WinningTicketRepository.class);
         DrawDateFacade drawDateFacade = mock(DrawDateFacade.class);
         NumberGeneratorFacade numberGeneratorFacade = new NumberGeneratorFacade(randomNumberGenerable, winningTicketValidator, winningTicketRepository, drawDateFacade);
-
         // when
         WinningTicketDto result = numberGeneratorFacade.generateWinningTicket(6, 1, 99);
 
@@ -49,7 +44,6 @@ class NumberGeneratorFacadeTest {
         assertNotNull(result.winningNumbers());
         assertNotNull(result.lotteryDate());
     }
-
     @Test
     public void shouldReturnSaveToDatabaseWhenTheWinningTicketHasSixNumbers() {
         // given
@@ -69,7 +63,6 @@ class NumberGeneratorFacadeTest {
         assertNotNull(result.lotteryDate());
         verify(winningTicketRepository, times(1)).save(any(WinningTicket.class));
     }
-
     @Test
     public void shouldReturnNumbersInRangeOneToNinetyNine() {
         // given
@@ -91,7 +84,6 @@ class NumberGeneratorFacadeTest {
             assertTrue(num >= 1 && num <= 99);
         }
     }
-
     @Test
     public void shouldReturnEmptyListWhenGeneratingZeroNumbers() {
         // given
