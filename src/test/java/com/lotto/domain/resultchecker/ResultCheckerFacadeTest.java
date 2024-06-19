@@ -40,6 +40,7 @@ class ResultCheckerFacadeTest {
         //when
         PlayersDto playersDto = resultCheckerFacade.generateResults();
         //then
+ 
         List<ResultDto> results = playersDto.results();
         ResultDto resultDto = ResultDto.builder()
                 .hash("001")
@@ -68,6 +69,8 @@ class ResultCheckerFacadeTest {
         assertThat(results).contains(resultDto, resultDto1, resultDto2);
         String message = playersDto.message();
         assertThat(message).isEqualTo("Winners succeeded to retrieve");
+
+
     }
 
     @Test
@@ -128,6 +131,7 @@ class ResultCheckerFacadeTest {
             resultCheckerFacade.generateResults();
             //when
 
+
             ResultDto resultDto = resultCheckerFacade.findByTicketId(hash);
             //then
             ResultDto expectedResult = ResultDto.builder()
@@ -140,4 +144,8 @@ class ResultCheckerFacadeTest {
                     .build();
             assertThat(resultDto).isEqualTo(expectedResult);
         }
+
+        //then
+
+
     }
