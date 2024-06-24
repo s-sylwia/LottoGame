@@ -26,9 +26,6 @@ The Lotto application allows players to enter their numbers, check if they won o
 ## Configuration
 - Application settings, such as the HTTP server address, can be adjusted in the `application.properties` file.
 
-## Running
-1. After installing dependencies, start the application by running `mvn spring-boot:run`.
-
 ## Testing
 - To run unit tests, use the command `mvn test`.
 - Tests cover all application functionalities, including checking the correctness of entered numbers, fetching data from the HTTP server, and verifying draw results.
