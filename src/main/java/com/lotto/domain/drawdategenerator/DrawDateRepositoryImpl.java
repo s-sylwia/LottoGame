@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrawDateRepositoryImpl implements DrawDateRepository {
-
     private List<DrawDateLog> drawDateLogs = new ArrayList<>();
 
     @Override
