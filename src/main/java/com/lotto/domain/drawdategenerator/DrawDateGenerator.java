@@ -15,7 +15,6 @@ class DrawDateGenerator {
     private static final LocalTime DRAW_TIME = LocalTime.of(12, 0, 0);
     private static final TemporalAdjuster NEXT_DRAW_DATE = TemporalAdjusters.next(DayOfWeek.SATURDAY);
     private Clock clock;
-
     DrawDateRepository drawDateRepository;
 
     public DrawDateGenerator(Clock clock, DrawDateRepository drawDateRepository) {
@@ -29,7 +28,6 @@ class DrawDateGenerator {
 
     LocalDateTime createNextDrawDate() {
         LocalDateTime currentTime = LocalDateTime.now(clock);
-
         if (isSaturdayAndBeforeNoon(currentTime)) {
             LocalDateTime drawDateBeforeNoon = LocalDateTime.of(currentTime.toLocalDate(), DRAW_TIME);
             drawDateRepository.save(new DrawDateLog(drawDateBeforeNoon, 1L));
