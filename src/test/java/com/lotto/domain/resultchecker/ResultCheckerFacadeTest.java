@@ -15,6 +15,7 @@ class ResultCheckerFacadeTest {
     @Test
     public void shouldGenerateAllPlayersWithCorrectMessage() {
 
+
     }
 
     @Test
@@ -49,4 +50,8 @@ class ResultCheckerFacadeTest {
         public void shouldGenerateResultWithCorrectCredentials () {
 
         }
+
+        //then
+
+
     }
